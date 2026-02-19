@@ -101,7 +101,8 @@ def extract_features(url):
     features.append(1 if any(word in url.lower() for word in suspicious_words) else 0)
 
     return features
-7️⃣ DATA PREPROCESSING
+```
+## 7️⃣ DATA PREPROCESSING
 🔧 Steps Involved
 Extract features for all URLs
 
@@ -113,9 +114,9 @@ Split dataset into:
 
 20% Testing Data
 
-8️⃣ DATA PREPARATION CODE
-python
-Copy code
+## 8️⃣ DATA PREPARATION CODE
+```python
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -127,7 +128,8 @@ y = data['label']
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-9️⃣ MODEL SELECTION
+```
+## 9️⃣ MODEL SELECTION
 🔹 Why Random Forest?
 High accuracy
 
@@ -137,14 +139,15 @@ Reduces overfitting
 
 Widely used in cybersecurity applications
 
-🔟 MODEL TRAINING
-python
-Copy code
+## 🔟 MODEL TRAINING
+```python
+
 from sklearn.ensemble import RandomForestClassifier
 
 model = RandomForestClassifier(n_estimators=100)
 model.fit(X_train, y_train)
-1️⃣1️⃣ MODEL EVALUATION
+```
+## 1️⃣1️⃣ MODEL EVALUATION
 📊 Evaluation Metrics
 Accuracy
 
@@ -154,20 +157,21 @@ Precision
 
 Recall
 
-python
-Copy code
+```python
+
 from sklearn.metrics import accuracy_score, classification_report
 
 y_pred = model.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
+```
 ✅ Expected Accuracy
 93% – 97%
 
-1️⃣2️⃣ URL PREDICTION MODULE
-python
-Copy code
+## 1️⃣2️⃣ URL PREDICTION MODULE
+``` python
+
 def predict_url(url):
     features = extract_features(url)
     prediction = model.predict([features])
@@ -178,8 +182,10 @@ def predict_url(url):
         return "LEGITIMATE"
 
 print(predict_url("http://secure-paypal-login.xyz"))
-1️⃣3️⃣ PROJECT STRUCTURE
-Copy code
+```
+
+## 1️⃣3️⃣ PROJECT STRUCTURE
+```
 phishing-url-detection/
 │
 ├── dataset/
@@ -189,21 +195,26 @@ phishing-url-detection/
 ├── predict.py
 ├── requirements.txt
 └── README.md
-1️⃣4️⃣ RESULTS
+```
+
+## 1️⃣4️⃣ RESULTS
+
 Successfully classified phishing and legitimate URLs
 
 Random Forest achieved approximately 95% accuracy
 
 System is fast and scalable
 
-1️⃣5️⃣ LIMITATIONS
+## 1️⃣5️⃣ LIMITATIONS
+
 Cannot detect zero-day phishing attacks
 
 Accuracy depends on dataset quality
 
 Does not analyze webpage content
 
-1️⃣6️⃣ FUTURE ENHANCEMENTS
+## 1️⃣6️⃣ FUTURE ENHANCEMENTS
+
 Add webpage content analysis
 
 Deploy as a Flask web application
